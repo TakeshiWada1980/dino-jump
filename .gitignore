@@ -1,0 +1,8 @@
+/node_modules
+/.vscode
+
+dino-jump.code-workspace
+
+package-lock.json
+game-rxjs.js
+

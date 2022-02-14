@@ -1,0 +1,33 @@
+{
+  "name": "dino-jump",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --mode development --hot --open",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TakeshiWada1980/dino-jump.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TakeshiWada1980/dino-jump/issues"
+  },
+  "homepage": "https://github.com/TakeshiWada1980/dino-jump#readme",
+  "devDependencies": {
+    "@reactivex/rxjs": "^6.6.7",
+    "rxjs": "^7.5.4",
+    "source-map-loader": "^3.0.1",
+    "ts-loader": "^9.2.6",
+    "ts-node": "^10.5.0",
+    "typescript": "^4.5.5",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  }
+}
