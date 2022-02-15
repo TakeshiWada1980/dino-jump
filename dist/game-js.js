@@ -1,13 +1,17 @@
-var canvas, g;
+
+var canvas, ctx, ctxbuf;
 var characterPosX, characterPosY;
 var characterImage;
 
 onload = function () {
   canvas = document.getElementById('gamecanvas');
-  g = canvas.getContext('2d');
+  ctx = canvas.getContext('2d');
+  canvas = document.getElementById('buffercanvas');
+  ctxbuf = canvas.getContext('2d');
+
   init();
   document.onkeydown = keydown;
-  setInterval('gameloop()', 16);  // 1000ms/60f = 16fps
+  setInterval(gameloop, 16);  // 1000ms/60f = 16fps
 };
 
 function init() {
@@ -15,7 +19,6 @@ function init() {
   characterPosY = 400;
   characterImage = new Image();
   characterImage.src = './img/reimu.png';
-
 }
 
 function keydown(e) { }
@@ -30,11 +33,12 @@ function update() {
 }
 
 function draw() {
-  g.fillStyle = 'black';
-  g.fillRect(0, 0, 480, 480);
-  g.drawImage(
+  ctxbuf.fillStyle = 'black';
+  ctxbuf.fillRect(0, 0, 480, 480);
+  ctxbuf.drawImage(
     characterImage,
     characterPosX - characterImage.width / 2,
     characterPosY - characterImage.height / 2
   );
+  ctx.putImageData(ctxbuf.getImageData(0, 0, 480, 480), 0, 0);
 }

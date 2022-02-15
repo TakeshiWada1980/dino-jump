@@ -1,7 +1,10 @@
 /node_modules
 /.vscode
+/ref
 
 dino-jump.code-workspace
+
+memo.txt
 
 package-lock.json
 game-rxjs.js
