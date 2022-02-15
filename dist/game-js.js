@@ -2,6 +2,9 @@
 var canvas, ctx, ctxbuf;
 var characterPosX, characterPosY;
 var characterImage;
+var speed = 0;
+var acceleration = 0;
+const characterInitPosY = 400;
 
 onload = function () {
   canvas = document.getElementById('gamecanvas');
@@ -21,7 +24,13 @@ function init() {
   characterImage.src = './img/reimu.png';
 }
 
-function keydown(e) { }
+function keydown(e) {
+  console.log('keydown called.');
+  if (speed === 0) {
+    speed = -20;
+    acceleration = 1.5;
+  }
+}
 
 function gameloop() {
   update();
@@ -29,7 +38,14 @@ function gameloop() {
 }
 
 function update() {
-  characterPosX += 2;
+  speed = speed + acceleration;
+  characterPosY += speed;
+  if (characterPosY > characterInitPosY) {
+    speed = 0;
+    acceleration = 0;
+    characterPosY = characterInitPosY = 400;
+  }
+
 }
 
 function draw() {

@@ -21,6 +21,7 @@
   "homepage": "https://github.com/TakeshiWada1980/dino-jump#readme",
   "devDependencies": {
     "@reactivex/rxjs": "^6.6.7",
+    "immer": "^9.0.12",
     "rxjs": "^7.5.4",
     "source-map-loader": "^3.0.1",
     "ts-loader": "^9.2.6",
