@@ -2,8 +2,17 @@
 var canvas, ctx, ctxbuf;
 var characterPosX, characterPosY;
 var characterImage;
+const characterR = 16;
+
+var enemyPosX, enemyPosY;
+var enemyImage;
+const enemyR = 16;
+
 var speed = 0;
 var acceleration = 0;
+var score;
+var enemySpeed = 5;
+
 const characterInitPosY = 400;
 
 onload = function () {
@@ -22,6 +31,14 @@ function init() {
   characterPosY = 400;
   characterImage = new Image();
   characterImage.src = './img/reimu.png';
+
+  enemyPosX = 600;
+  enemyPosY = 400;
+  enemyImage = new Image();
+  enemyImage.src = '../img/marisa.png';
+
+  score = 0;
+
 }
 
 function keydown(e) {
@@ -43,7 +60,20 @@ function update() {
   if (characterPosY > characterInitPosY) {
     speed = 0;
     acceleration = 0;
-    characterPosY = characterInitPosY = 400;
+    characterPosY = characterInitPosY;
+  }
+
+  enemyPosX -= enemySpeed;
+  if (enemyPosX < -100) {
+    enemyPosX = 600;
+    score += 100;
+  }
+
+  const diffX = characterPosX - enemyPosX;
+  const diffY = characterPosY - enemyPosY;
+  const distance = diffX ** 2 + diffY ** 2;
+  if (distance < (characterR + enemyR) ** 2) {
+    enemySpeed = 0;
   }
 
 }
@@ -56,5 +86,18 @@ function draw() {
     characterPosX - characterImage.width / 2,
     characterPosY - characterImage.height / 2
   );
+
+  ctxbuf.drawImage(
+    enemyImage,
+    enemyPosX - enemyImage.width / 2,
+    enemyPosY - enemyImage.height / 2
+  );
+
+  ctxbuf.fillStyle = 'white';
+  ctxbuf.font = '16pt Arial';
+  const scoreLabel = `SCORE : ${score}`;
+  const scoreLabelWidth = ctxbuf.measureText(scoreLabel).width;
+  ctxbuf.fillText(scoreLabel, 460 - scoreLabelWidth, 40);
+
   ctx.putImageData(ctxbuf.getImageData(0, 0, 480, 480), 0, 0);
 }
